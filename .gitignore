@@ -1,0 +1,11 @@
+*env/
+*.env
+.vscode/
+.edea/
+__pycache__/
+*.py[cod]
+db.*
+*.db
+*.sqlite
+*.sqlite3
+*.tmp
