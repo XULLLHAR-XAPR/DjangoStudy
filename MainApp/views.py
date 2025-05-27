@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Item
 # Create your views here.
 
 items = [
@@ -19,7 +20,12 @@ def mes_about(request):
 
 def mes_item(request, num):
     """По указанному id возращает элемент из списка."""
-    for item in items:
+    itm = Item.objects.get(pk=num)
+    cntxt = {
+        "item" : {"id": itm.id, "name": itm.name ,"quantity": itm.count}
+        }
+    return render(request, "item_page.html", cntxt)
+    for item in items_bd():
         if item["id"] == num:
             context = {
                 "item" : item
@@ -29,7 +35,7 @@ def mes_item(request, num):
 
 def mes_items(request):
     context = {
-        "items": items
+        "items": items_bd()
     }
     return render(request, "items_page.html", context)
 
@@ -37,3 +43,10 @@ def home(request):
     text = f"""
     <p> <a href="/items"> Список товаров </a></p>"""
     return HttpResponse(text)
+
+def items_bd():
+    itms_set = Item.objects.all()
+    itms = []
+    for itm in itms_set:
+        itms.append({"id": itm.id, "name" : itm.name, "quantity" : itm.count})
+    return itms
