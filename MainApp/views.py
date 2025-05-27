@@ -11,7 +11,11 @@ items = [
 ]
 
 def home(request):
-    return render(request, 'index.html')
+    context = {
+        "name": "Галя Хренова Петрович",
+        "email": "hrenovo_mne_@i"
+    }
+    return render(request, 'index.html', context)
 
 
 def mes_about(request):

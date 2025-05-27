@@ -2,9 +2,11 @@
 
 ## Инструкция по развертыванию проекта
 
-1
+1. Создать виртуальное окружение:
 
-2
+python3 -m venv django_venv
+
+2.
 
 3
 
@@ -19,3 +21,19 @@
 8
 
 9
+
+## Дополнительно
+1. Полезно расширение для шаблонов: 'django'
+'''
+ext install bastiteo.vscode-django
+'''
+
+2. Полезно расширение для шаблонов: 'django'
+'''
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "files.associations": {
+        "*.html": "django-html"
+    }
+'''
