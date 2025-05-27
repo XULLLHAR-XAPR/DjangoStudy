@@ -10,59 +10,30 @@ items = [
 {"id": 8, "name": "Кепка" ,"quantity":124},
 ]
 
-def home(request):
-    context = {
-        "name": "Галя Хренова Петрович",
-        "email": "hrenovo_mne_@i"
-    }
-    return render(request, 'index.html', context)
-
-
 def mes_about(request):
-    text = """
-    Имя: <strong>Иван</strong><br>
-    Отчество: <strong>Петрович И.П.</strong><br>
-    Фамилия: <strong>Иванов</strong><br>
-    телефон: <strong>8-923-600-01-02</strong><br>
-    email: <strong>vasya@mail.ru</strong>"""
-    return HttpResponse(text)
+    context = {
+        "name" : "Галя Хренова Петрович",
+        "email" : "mne_hrenova_@i"
+    }
+    return render(request, "index.html", context)
 
 def mes_item(request, num):
-    return HttpResponse(num_tov(num))
+    """По указанному id возращает элемент из списка."""
+    for item in items:
+        if item["id"] == num:
+            context = {
+                "item" : item
+            }
+            return render(request, "item_page.html", context)
+
 
 def mes_items(request):
-    text = "<h1>Список товаров</h1>"
-    if (items.count == 0):
-        text += " пуст"
-    else:
-        text += "<br>"
-        num = 1
-        for item in items:
-            text += f"""<a href="item/{item["id"]}">{num})</a> {num_tov(item['id'])} <br>"""
-            num +=1
+    context = {
+        "items": items
+    }
+    return render(request, "items_page.html", context)
+
+def home(request):
+    text = f"""
+    <p> <a href="/items"> Список товаров </a></p>"""
     return HttpResponse(text)
-
-
-
-
-def empty_tov(num):
-    return f"Товар с id={num} не найден"
-
-def num_tov(num):
-    el = items[0]
-    res = False
-
-    for item in items:
-        if (item["id"] == num):
-            res = True
-            el = item
-    
-    text = ""
-
-    if (res):
-        text = f"<strong>{el["name"]}</strong> <br>"
-        text = text + f"Количество: {el["quantity"]} <br>"
-    else:
-        text = empty_tov(num)
-    text += f"""<a href="items">Назад к списку товаров</a>"""
-    return text

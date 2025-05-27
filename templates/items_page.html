@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
+    <title>Items list</title>
 </head>
 <body>
     <nav>/<a href="/"> Home </a>/<a href="/items"> Items </a>/<a href="/about"> About </a>/</nav>
-    <h1>Приветствую!</h1>
-    Меня зовут <i>{{ name }}.</i><br>
-    Мой email: {{ email }}<br>
-    <p>Это главная страница сайта.</p>
-    <i>Сайт пока в разработке...</i>
-
+    <h1> Список товаров </h1>
+    <ol>
+        {% for item in items %}
+            <li> <a href = "/item/{{ item.id }}"> {{item.name}} </a></li>
+        {% endfor %}
+    </ol>
+    
 </body>
 </html>
