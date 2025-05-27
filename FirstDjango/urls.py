@@ -24,5 +24,4 @@ urlpatterns = [
     path('about', views.mes_about),
     path('item/<int:num>', views.mes_item),
     path('items', views.mes_items)
-
 ]
