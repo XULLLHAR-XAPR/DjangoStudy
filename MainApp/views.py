@@ -32,6 +32,5 @@ def mes_items(request):
     return render(request, "items_page.html", context)
 
 def home(request):
-    text = f"""
-    <p> <a href="/items"> Список товаров </a></p>"""
-    return HttpResponse(text)
+    context = {}
+    return render(request, "home.html")
