@@ -32,5 +32,4 @@ def mes_items(request):
     return render(request, "items_page.html", context)
 
 def home(request):
-    context = {}
     return render(request, "home.html")

@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ item.id }}</title>
-</head>
-<body>
-    <nav>/<a href="/"> Home </a>/<a href="/items"> Items </a>/<a href="/about"> About </a>/</nav>
+{% extends "base.html" %}
 
-    <h2> Имя: {{item.name}} </h2>
-    <p> Брэнд: {{item.brand}}</p>
-    <p> Описание: {{ item.description }}</p>
+{% block title %}
+{{ item.id }}
+{% endblock%}
 
-    <p> Количество: {{ item.count | default:"товара нет на складе" }}</p>
-    
-    <p> <a href="/items"> Назад к списку товаров </a></p>
-</body>
-</html>
+{% block content %}
+<h2> Имя: {{item.name}} </h2>
+<p> Брэнд: {{item.brand}}</p>
+<p> Описание: {{ item.description }}</p>
+
+<p> Количество: {{ item.count | default:"товара нет на складе" }}</p>
+
+<p> <a href="{% url "items-list" %}"> Назад к списку товаров </a></p>
+{% endblock%}
