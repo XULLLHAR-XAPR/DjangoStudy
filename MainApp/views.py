@@ -20,8 +20,11 @@ def mes_about(request):
 
 def mes_item(request, num):
     """По указанному id возращает элемент из списка."""
+    item = Item.objects.get(pk=num)
+    colors = item.colors.all()
     context = {
-        "item" : Item.objects.get(pk=num)
+        "item" : Item.objects.get(pk=num),
+        "colors" : colors,
         }
     return render(request, "item_page.html", context)
 
