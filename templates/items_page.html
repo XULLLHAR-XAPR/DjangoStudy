@@ -9,7 +9,7 @@ Items list
 <div class="items">
     {% for item in items %}
         <div class="item"> 
-            <a href="item/{{ item.id }}"> 
+            <a href="{% url "item-detail" item.id %}"> 
             <p class="item_name"> {{ item.name }} </p> 
             </a>
             <p>Описание товара: {{ item.description }}</p>
@@ -17,3 +17,4 @@ Items list
     {% endfor %}
 </div>
 {% endblock%}
+
